@@ -1,0 +1,3 @@
+#RewriteEngine On
+#RewriteBase /k5
+#RewriteRule save save.php

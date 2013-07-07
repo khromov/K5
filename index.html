@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>
+            K5
+        </title>
+        
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/jquery.jscrollpane.css" />
+        <link rel="stylesheet" href="css/960.css" />
+        
+        <link rel="stylesheet" href="css/k5.css" />
+        
+        <script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+        <script type="text/javascript" src="js/jquery.jclock.js"></script>
+        <script type="text/javascript" src="js/jquery.autoresize.js"></script>
+        <script type="text/javascript" src="js/jquery.putCursorAtEnd.1.0.js"></script>
+        <script type="text/javascript" src="js/jquery.counter-2.1.js"></script>
+        <script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+        <script type="text/javascript" src="js/jquery.color.js"></script>
+        <script type="text/javascript" src="js/jquery.autogrowinput.js"></script>
+        <script type="text/javascript" src="js/jquery.textcounters.js"></script>
+	
+		<!--
+			        <script type="text/javascript" src="js/jquery.jscrollpane.min.js"</script>
+		-->
+                
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+            	/*
+				if (!$.browser.webkit)
+				{
+					$('#thevoid').jScrollPane();
+				}
+				*/	
+			
+                //-- textcounters
+                /*
+                $('#thevoid').bind("keypress.counter keydown.counter keyup.counter blur.counter focus.counter change.counter paste.counter", function(){
+                    
+                });
+                */
+                //-- /textcounters
+                
+                //Original from: http://roshanbh.com.np/2008/10/jquery-plugin-word-counter-textarea.html
+                //Todo: cleanup + optimize for jquery 1.7
+                jQuery.fn.wordCount = function(params)
+                {
+                    var p =  {
+                        counterElement:"text-counters",
+                        counterNameCharacters:" characters",
+                        counterName:" words",
+                        counterNamePage:" pages"
+                    };
+                    var total_words;
+                    
+                    if(params)
+                    {
+                        jQuery.extend(p, params);
+                    }
+                    
+                    //for each keypress function on text areas
+                    this.keypress(function()
+                    {
+                        total_characters = this.value.length;
+                        total_words = this.value.split(/[\s\.\?]+/).length;
+                        total_pages = 1+Math.floor(total_words/250);
+                        jQuery('#'+p.counterElement).html(total_characters+p.counterNameCharacters+" | "+total_words+p.counterName+" | "+total_pages + p.counterNamePage);
+                    });
+                };
+                
+                $('#thevoid').wordCount();
+                
+                //$(this).textcounters();
+                
+                /* buggy autoresize script
+                // TODO: Let's use a jquery script for customs crollbars instaead and place them nicely rightmost
+                $('#k5-top .right .clock').jclock();
+                $('#thevoid').autoResize({
+                    maxHeight: -1,
+                    extraSpace: 50
+                });
+                */
+                
+                $('#thevoid').putCursorAtEnd();
+                
+                //Auto grow input
+                $('#right-document-name').autoGrowInput();
+                
+                /*
+                $("#thevoid").counter({
+                    goal: 'sky',
+                    type : 'word',
+                    msg : 'amazing words'
+                });              
+                */
+                
+                //$('#text-counters').append(' fsgsd');
+                //var words = document.k4form.k4formcontent.value.split(' ').length;
+                //var words = 4;
+                //$('#text-counters').text(words+' words');
+                
+                // -- Hotkeys
+                //Help text
+                $(document).bind('keydown', 'Ctrl+e', function (evt){showToast('help',10000); return false; });
+                $('#thevoid').bind('keydown', 'Ctrl+e', function (evt){showToast('help',10000); return false; });
+                          
+                //About text
+                $(document).bind('keydown', 'Ctrl+q', function (evt){showToast('about',10000); return false; });
+                $('#thevoid').bind('keydown', 'Ctrl+q', function (evt){showToast('about',10000); return false; });             
+                
+                //Form save
+                $(document).bind('keydown', 'Ctrl+s', function (evt){$("#k5-form").submit(); return false; });
+                $('#thevoid').bind('keydown', 'Ctrl+s', function (evt){$("#k5-form").submit(); return false; });
+                // --- /Hotkeys
+                
+                //Todo: Let disable via cookie
+                showToast('intro')
+                
+                //Top buttons
+                $('.right-info').click(function(){showToast(this.hash.substring(1)); return false;});
+                
+                //Top save button
+                $('.right-save').click(function(){$("#k5-form").submit(); return false;});
+                
+                //On change document name
+                $('#right-document-name').change(function(){$('#k5-name').val(this.value);});
+                
+                //Document change name nice borders
+                $('#right-document-name').click(function()
+                {
+                    nameSaveAnimation();
+                    this.select();
+                });
+                $('#right-document-name').bind('keydown','return',function()
+                {
+                    nameSaveAnimation();
+                    $('#thevoid').focus();
+                });
+                
+                function nameSaveAnimation()
+                {
+                    $('#right-document-name').css('border','1px solid white');
+                    $('#right-document-name').animate({ borderTopColor: '#101010', borderLeftColor: '#101010', borderRightColor: '#101010', borderBottomColor: '#101010' }, 'slow');                    
+                }
+                
+                function showToast(toastclass,timeout)
+                {
+                    if(timeout==null)
+                    {
+                        timeout=5000;    
+                    }
+                    $('.k5-toast-container .'+toastclass).fadeIn(700).delay(timeout).fadeOut(700);
+                }
+            });            
+        </script>
+    </head>    
+    <body>
+        <div id="k5-top">
+            <div class="left">
+                <div id="text-counters">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="right">
+                <p class="info">
+                    <input type="text" name="right-document-name" id="right-document-name" value="Document 1"/>
+                    <a href="#" class="right-save">
+                    	Save
+                    </a> |
+                    <a href="#" class="right-load-local">
+                    	Load
+                    </a> |
+                   
+                    <a href="#help" class="right-info">
+                    	Help
+                    </a> |
+                    <a href="#about" class="right-info">
+                    	About
+                    </a>
+                </p>
+                <p class="clock">
+                </p>
+            </div>
+        </div>
+        <div id="k5-main" class="container_12">
+            <div class="grid_12 k5-formwrapper">
+                <form name="k5-form" id="k5-form" action="save.php" method="post">
+                    <input type="hidden" value="document1" name="k5-name" id="k5-name"/>
+                    <textarea id="thevoid" name="k5-formcontent">You are now free.</textarea> 
+                </form>
+            </div>
+        </div>
+        <div class="clear"></div>
+        
+        <div class="k5-toast-container">
+            <div class="k5-toast intro">
+                <p class="content">
+                    <b>Welcome to K5</b><br />
+                    Drag a text file onto the window or start writing.<br /><br />
+                    
+                    F11 to go fullscreen. <br />
+                    Ctrl+S to save your document. <br />
+                    Ctrl+E to see the help section. <br />
+                    Ctrl+Q to view app information.
+                </p>
+            </div>
+            <div class="k5-toast help">
+                <p class="content">
+                    <b>Help</b><br />
+                    Drag a text file onto the window or start writing.<br /><br />
+                    
+                    F11 to go fullscreen. <br />
+                    Ctrl+S to save your document. <br />
+                    Ctrl+E to see the help section. <br />
+                    Ctrl+Q to view app information.                    
+                </p>
+            </div>
+            <div class="k5-toast about">
+                <p class="content">
+                    <b>K5</b><br />
+                    Version 0.1<br />
+                    Made by Stanislav Khromov<br />
+                    Licensed under GPLv3<br />
+                    <a href="http://khromov.wordpress.com" target="_blank">khromov.wordpress.com</a><br />
+                    <a href="https://bitbucket.org/khromov/k5" target="_blank">bitbucket</a><br />
+                </p>
+            </div>
+        </div>
+        
+    </body>
+</html>
