@@ -1,0 +1,171 @@
+/**
+ * K5
+ *
+ */
+
+/* Includes the required libs */
+@import (less) "lib/960.css";
+@import (less) "lib/reset.css";
+@import (less) "lib/stickyfooter.css";
+
+html
+{
+    height: 91%;
+}
+
+body
+{
+    background: #272822;
+    font-family: "Courier New", Courier, monospace;
+    height: 100% !important;
+}
+
+#k5-top a:link, #k5-top a:active, #k5-top a:visited
+{
+    color: #828282;
+    text-decoration: none;
+}
+
+#k5-top a:hover
+{
+    color: white;
+}
+
+#k5-form
+{
+    height: 100%;
+}
+
+.k5-formwrapper
+{
+    height: 100%;
+}
+
+.k5-toast a:link, .k5-toast a:active, .k5-toast a:visited
+{
+    color: #828282;
+    text-decoration: none;
+}
+
+.k5-toast a:hover
+{
+    color: white;
+}
+
+#k5-top
+{
+    background: #101010;
+    color: #828282; 
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+    line-height: 28px;
+         
+    min-width: 960px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 28px;
+    z-index: 9999;
+}
+
+#right-document-name
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+    border: none;
+    color: #828282;
+    background-color: #101010;
+    text-align: right;
+    margin-right: 10px;
+    padding: 2px 5px;
+    width: 70px;
+}
+
+#k5-main
+{
+    margin-top: 50px;
+    height: 100%;
+}
+
+#k5-main #thevoid
+{
+    width: 940px;
+    background-color: #272822;
+    border: none;
+    color: #F8F8F2;
+    font-size: 12pt;
+    margin-bottom: 20px;
+    
+    height:100%;
+
+    resize: none;
+    -moz-resize: none;
+}
+
+#k5-top .left
+{
+    margin-left: 20px;
+    float: left;
+}
+
+#k5-top .right
+{
+    margin-right: 20px;
+    float: right;
+}
+
+
+#k5-top .clock, #k5-top .info
+{
+    float: left;
+    margin-left: 11px;
+}
+
+.k5-toast-container
+{
+    position: fixed;
+    bottom: 20px;
+    left: 20px;    
+}
+
+.k5-toast
+{
+    display: none;
+
+    background: #101010;
+    margin-top: 15px;
+    
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.k5-toast .content
+{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    padding: 10px;
+    width: 200px;
+    font-size: 8pt;
+    line-height: 12pt;
+    color: #F8F8F2;
+}
+
+/** Scrollbar colors **/
+#thevoid::-webkit-scrollbar {
+	  width: 15px;
+} /* this targets the default scrollbar (compulsory) */
+
+#thevoid::-webkit-scrollbar-track {
+	  background-color: #b46868;
+} /* the new scrollbar will have a flat appearance with the set background color */
+
+#thevoid::-webkit-scrollbar-thumb {
+	  background-color: rgba(0, 0, 0, 0.2); 
+} /* this will style the thumb, ignoring the track */
+
+#thevoid::-webkit-scrollbar-button {
+	  background-color: #7c2929;
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+
+#thevoid::-webkit-scrollbar-corner {
+	  background-color: black;
+} /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */	
