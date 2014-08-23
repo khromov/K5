@@ -1,2 +1,0 @@
-Broken packages:
-"jquery.autoresize": "jamespadolsey/jQuery.fn.autoResize"

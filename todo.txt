@@ -1,0 +1,12 @@
+Broken packages:
+"jquery.autoresize": "jamespadolsey/jQuery.fn.autoResize"
+
+Todo:
+- Update underlying CSS and JS frameworks
+- LocalStorage for saving file
+- Drag and drop support for loading files
+- Audio on key click
+
+Todo low priority:
+- Google Drive / Dropbox integration?
+- Make responsive
