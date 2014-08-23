@@ -1,0 +1,21 @@
+{
+    "name": "K5",
+    "version": "1.0.0",
+    "homepage": "https://github.com/khromov/K5",
+    "authors": [
+        "khromov <stanislav.khromov@gmail.com>"
+    ],
+    "description": "Distraction-free writing in your browser",
+    "license": "GPLv3",
+    "dependencies": {
+        "jquery": "~1.7.1",
+        "jclock": "dsparling/jclock#master"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}
